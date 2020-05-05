@@ -1,0 +1,182 @@
+welcome to  cheat sheet:
+cd ~/Library/Android/sdk/tools 
+./emulator -avd Nexus_5X_API_23
+npm install link react-native-splash-screen
+//react context and hooks
+react context api used to pass state between components
+hooks are special functions that are used to work with functions like classes (usestate)
+--->context and hooks are just like redux
+
+creation of a hooks
+const songList =()=>{
+    const [songs,setSongs]=useState(
+        [
+            {title:'song1',id:uuidv4()},
+            {title:'song2',id=uuidv4()}
+        ]
+    )
+}
+const addSong=()=>{
+    setSongs(     
+        [
+            ...songs ,
+            {title:'new song' , id:uuidv4()}
+        ]
+    )
+}
+////TextInput
+
+<Text>
+set text here :
+</Text>
+<TextInput  multiline
+    style={{styles.input}}
+    placeholder='name' 
+    onChangeText={}
+/>
+<TextInput  
+    keyboardType='numeric'
+    style={{styles.input}}
+    placeholder='age' 
+    onChangeText={}
+/>
+
+
+const styles=StyleSheet.create(
+    input : {
+        marginBottom : 10,
+        paddingHorizontal:8,
+        paddingVertical:6,
+        borderBottomWidth:1,
+        borderBottomColor:'#fff'
+    }
+);
+
+///List and scrollView
+import {ScrollView} from 'react-native'
+
+export default function App(){
+
+    const [students,setStudents]=useState(
+        [
+            {name:'',key:uuidv4()},
+            {name:'',key:uuidv4()},
+            {name:'',key:uuidv4()},
+            {name:'',key:uuidv4()},
+        ]
+    );
+    return (
+        <View style ={{styles.container}}>
+            <ScrollView>
+                students.map
+                (
+                    student =>
+                    {
+                        return 
+                        (
+                            <View key={student.key}>
+                                <Text >
+                                    {student.name}
+                                </Text>
+                            </View>
+                            
+                        )
+                    }
+                )
+            </ScrollView>
+        </View>
+    )
+}
+
+////FlatList component
+import {FlatList} from 'react-native';
+
+return(
+    <FlatList 
+        numColumns={2}
+        keyExtractor={(item)=>item.id}
+        data={students}
+        renderItem=
+        {
+            ({item})=>
+            {
+                <Text>
+                    {item.name}
+                </Text>
+            }
+        }
+    />
+)
+
+//touchable components
+import {TouchableOpacity} from 'react-native';
+const pressHandler=(key)=>{
+    setStudents(
+        (prevStudents)=>
+        {
+            return prevStudents.filter(student=>student.key != key)
+        }
+    );
+}
+
+<TouchableOpacity onPress={()=>pressHandler(item.id)}>
+
+</TouchableOpacity>
+
+//////////Dismissing the Keyboard
+import {TouchableWithoutFeedback , keyboard}
+
+const onPressHandler=()=>{
+    keyboard.dismiss();
+}
+
+return(
+    <TouchableWithoutFeedback onPress={onPressHandler}>
+        <View style={styles.container}>
+
+        </View>
+    </TouchableWithoutFeedback>
+    
+)
+
+//////////flexbox basics
+
+
+
+
+/////// stack navigation
+npm install react-navigation 
+npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+
+import {createStackNavigator} from 'react-navigation-stack';
+import {createAppContainer} from 'react-navigation';
+import Login from './Login';
+import Register from './Register';
+
+const screens = {
+  Login: {
+    screen: Login,
+  },
+  Register: {
+    screen: Register,
+  },
+};
+const AppStack = createStackNavigator(screens);
+export default createAppContainer(AppStack);
+
+
+------Login.js
+export default Login({navigation}){
+    const pressHandler=()=>{
+        navigation.navigate('Login');
+        //navigation.push('Login');
+        //navigation.goBack();
+
+    }
+    return(
+        <View>
+            <Button onPress={onPressHandler} />
+        </View>
+    )
+}
