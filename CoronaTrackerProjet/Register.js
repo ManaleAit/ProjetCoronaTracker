@@ -13,11 +13,17 @@ import {
 import logo from './images/boxCont.png';
 import {TouchableOpacity} from 'react-native';
 import RegisterHeaderComponent from './components/registerHeaderComponent';
+
+var people =
+  {firstname: '',lastname:'',age:'',Address:''}
+
+
+
 export default function Register({navigation}) {
   const pressHandler = () => {
     navigation.navigate ('Register2');
+    
   };
-
   return (
     <View style={styles.containerView}>
 
@@ -26,14 +32,41 @@ export default function Register({navigation}) {
           <RegisterHeaderComponent />
         </View>
         <View style={styles.inputs}>
-          <TextInput placeholder="First name" style={styles.inp1} />
-          <TextInput placeholder="Last name" style={styles.inp1} />
+          <TextInput placeholder="First name" style={styles.inp1} name="firstname"  
+          
+          onChangeText={(text) => {
+           
+          people.firstname=text
+              
+          }} />
+          <TextInput placeholder="Last name" style={styles.inp1} 
+           name="lastname"  
+          
+           onChangeText={(text) => {
+            
+           people.lastname=text
+               
+           }} />
+        
           <TextInput
             keyboardType="numeric"
             placeholder="Age"
-            style={styles.inp1}
-          />
-          <TextInput placeholder="Address" style={styles.inp1} />
+            style={styles.inp1}  name="age"  
+          
+            onChangeText={(text) => {
+             
+            people.age=text
+                
+            }} />
+          <TextInput placeholder="Address" style={styles.inp1} 
+          
+          name="Address"  
+          
+            onChangeText={(text) => {
+             
+            people.Address=text
+                
+            }}/>
         </View>
         <View style={styles.buttons}>
 
@@ -41,7 +74,7 @@ export default function Register({navigation}) {
             style={styles.NextButtonStyle}
             activeOpacity={0.5}
             onPress={() => {
-              navigation.navigate ('RegisterScreen2');
+              navigation.navigate ('RegisterScreen2', { people: people});
             }}
           >
             <Text
