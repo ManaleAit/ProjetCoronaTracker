@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Component } from 'react-native';
+import { Text, View, Component,  ScrollView } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -30,7 +30,7 @@ function ListScreen({ navigation }) {
 
     return (
   
-           <View style={{ flex: 1  ,backgroundColor:'#F6F6F6'}}><Questionnaire/></View>
+      <View style={{ flex: 1  ,backgroundColor:'#F6F6F6'}}><Questionnaire/></View> 
            
            )
 }

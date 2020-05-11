@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text,Image,StyleSheet,CheckBox ,Picker,TextInput} from 'react-native';
+import { View, Text,Image,StyleSheet,CheckBox ,Picker,TextInput,ScrollView} from 'react-native';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import RadioGroup,{Radio} from "react-native-radio-input";
 class Questionnaire  extends Component {
@@ -223,6 +223,7 @@ class Questionnaire  extends Component {
     }
 
     return (
+      <ScrollView>
       <View  style={{ flex: 1, marginTop: 50 }}  >
         <Image  style={styles.img}     source={require('../images/logo.png')} />
         <Text style={styles.logo} >Corona's Questionnaire</Text>
@@ -377,6 +378,7 @@ class Questionnaire  extends Component {
         </ProgressSteps>
         
       </View>
+      </ScrollView>
     );
   }
 }
