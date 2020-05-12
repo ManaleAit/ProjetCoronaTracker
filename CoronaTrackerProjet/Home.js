@@ -71,7 +71,7 @@ const tabnav = createMaterialBottomTabNavigator({
     {
         screen: ListScreen,
         navigationOptions: {
-            tabBarLabel: 'Test Corona',
+            tabBarLabel: 'Test Corana',
             tabBarIcon: ({ tintColor }) => (
                 <View>
                     <Icon style={{ color: tintColor }} size={25} name={'format-list-bulleted'} />
