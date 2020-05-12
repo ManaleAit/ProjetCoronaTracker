@@ -19,7 +19,7 @@ class Dashboard extends Component {
                 <ScrollView>
                     <View style={styles.boxContainer}>
                         <Text style={styles.i1}>
-                            Welcome Ayoub !
+                            Welcome Ayoub  !
                         </Text>
                         <Text
                             style={{ color: '#65799B', fontSize: 16, fontFamily: 'Poppings' }}

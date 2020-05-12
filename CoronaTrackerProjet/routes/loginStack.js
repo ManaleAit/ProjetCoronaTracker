@@ -24,11 +24,12 @@ const registerStack = createStackNavigator(RegisterScreenStack, {
 
 const SwitchScreens = {
 
-  HomeScreen: {
-    screen: HomeScreen,
-  },
+ 
   LoginScreen: {
     screen: Login,
+  },
+  HomeScreen: {
+    screen: HomeScreen,
   },
   RegisterScreen: {
     screen: registerStack,
