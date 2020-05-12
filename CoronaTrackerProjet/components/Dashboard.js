@@ -87,27 +87,21 @@ class Dashboard extends Component {
                             <View style={styles.deaths}><Text style={{ color: '#F85050', fontSize: 15, fontFamily: 'Poppings' }}>Deaths</Text><Text style={styles.dataCases}>{this.returnTotalDeaths()}</Text><Image style={{ height: 50 }} source={require('../Icons/Path117.png')} /></View>
                         </View>
                     </View>
+                    <Text style={{ marginTop: 30, fontFamily: 'Poppings', fontSize: 14, color: '#272343' }}>Today's Moroccan statistics</Text>
+
                     <View style={styles.boxContainer3}>
-                    <View>
-        
+                        <View  style={{backgroundColor:'#272343',width:315,height:220,borderRadius:15,marginLeft:3,marginTop:10}}>
+                    
 
-
-
-        
-
-        <View  style={{backgroundColor:'#272343',width:315,height:220,borderRadius:15,marginLeft:3,marginTop:10}}>
-    
-
-          <Text  style={{ color:'white',marginLeft:20,borderBottomWidth:1,borderColor:'white',width:270,marginBottom:10,opacity:0.6,paddingBottom:5}}> <Image  source={require('../images/header.png')}  />Safi</Text>
-          <Text  style={{ color:'white',marginLeft:240,marginTop:-35,marginBottom:10,opacity:0.6,paddingBottom:5}}>Change</Text>
-          
-          <Chart/>
-          
-          
-          </View>
+                        <Text  style={{ color:'white',marginLeft:20,borderBottomWidth:1,borderColor:'white',width:270,marginBottom:10,opacity:0.6,paddingBottom:5}}> <Image  source={require('../images/header.png')}  />Morocco</Text>
+                        <Text  style={{ color:'white',marginLeft:240,marginTop:-35,marginBottom:10,opacity:0.6,paddingBottom:5}}>Change</Text>
+                        
+                        <Chart/>
+                        
+                        
+                        </View>
      
-          </View>
-          </View>
+                    </View>
 
                 </ScrollView>
             </View >
@@ -117,7 +111,7 @@ class Dashboard extends Component {
 
 const styles = StyleSheet.create({
     boxContainer3:{
-
+        alignItems:'center'
     },
     dataCases: {
         color: 'white'
