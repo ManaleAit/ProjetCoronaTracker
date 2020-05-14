@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Component,  ScrollView } from 'react-native';
+import { Text, View, Component, ScrollView } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -7,12 +7,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Dashboard from './components/Dashboard';
 import HomeIcon from './Icons/home.svg'
-import Questionnaire from './components/QuestionnaireDB'
+import Questionnaire from './components/QuestionnaireDB';
+import MapView from 'react-native-maps';
 function HomeScreen({ navigation }) {
 
     return (
         <View style={{ flex: 1, }}>
-            <Dashboard />
+            <Dashboard navigation={navigation} />
         </View >
     )
 }
@@ -29,16 +30,16 @@ function NotificationScreen({ navigation }) {
 function ListScreen({ navigation }) {
 
     return (
-  
-      <View style={{ flex: 1  ,backgroundColor:'#F6F6F6'}}><Questionnaire/></View> 
-           
-           )
+
+        <View style={{ flex: 1, backgroundColor: '#F6F6F6' }}><Questionnaire /></View>
+
+    )
 }
 function MapScreen({ navigation }) {
 
     return (
         <View style={{ flex: 1, }}>
-            <Text>maps</Text>
+            <MapView />
         </View >
     )
 }
@@ -59,7 +60,7 @@ const tabnav = createMaterialBottomTabNavigator({
     {
         screen: NotificationScreen,
         navigationOptions: {
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Notification',
             tabBarIcon: ({ tintColor }) => (
                 <View>
                     <Icon style={{ color: tintColor }} size={25} name={'notifications'} />
@@ -83,7 +84,7 @@ const tabnav = createMaterialBottomTabNavigator({
     {
         screen: MapScreen,
         navigationOptions: {
-            tabBarLabel: 'Home',
+            tabBarLabel: 'Map',
             tabBarIcon: ({ tintColor }) => (
                 <View>
                     <Icon2 style={{ color: tintColor }} size={25} name={'map-marker'} />

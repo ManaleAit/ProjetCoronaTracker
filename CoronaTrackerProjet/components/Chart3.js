@@ -58,7 +58,7 @@ export default class Chart extends Component {
     getSevenLastCases() {
         let TabCases = [];
         for (var i = 0; i < 7; i++) {
-            TabCases.push((this.state.dataSource[Object.keys(this.state.dataSource)[Object.keys(this.state.dataSource).length - 2 - i]].new_daily_cases));
+            TabCases.push((this.state.dataSource[Object.keys(this.state.dataSource)[Object.keys(this.state.dataSource).length - 2 - i]].new_daily_deaths));
 
         }
         return TabCases;
@@ -85,7 +85,7 @@ export default class Chart extends Component {
                 <LineChart
                     data={this.returnTotalInfected()}
                     width={300} // from react-native
-                    height={160}
+                    height={180}
                     yAxisLabel=""
                     yAxisSuffix=""
 
@@ -94,8 +94,8 @@ export default class Chart extends Component {
                     chartConfig={{
 
                         backgroundColor: "green",
-                        backgroundGradientFrom: "#272343",
-                        backgroundGradientTo: "#272343",
+                        backgroundGradientFrom: "red",
+                        backgroundGradientTo: "red",
                         decimalPlaces: 0, // optional, defaults to 2dp
                         color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                         labelColor: (opacity = 0.5) => `rgba(255, 255, 255, ${opacity})`,
@@ -110,7 +110,7 @@ export default class Chart extends Component {
                     style={{
 
                         //marginVertical: 8,
-                        //marginLeft:20,
+                        marginLeft: 8,
                         // marginTop:300,
 
                         borderRadius: 16

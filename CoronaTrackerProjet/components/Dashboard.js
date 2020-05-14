@@ -8,9 +8,15 @@ import {
     Text,
     StatusBar,
     TextInput,
-    Image,
+    Image, TouchableOpacity,
+    Button,
 } from 'react-native';
-import Chart from './Chart'
+import Chart from './Chart';
+
+import Chart3 from './Chart3';
+
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 class Dashboard extends Component {
     constructor(props) {
         super(props);
@@ -58,6 +64,7 @@ class Dashboard extends Component {
     returnDailyDeaths() {
         return ""+this.state.isLoaded ? this.state.new_daily_deaths : "---";
     }
+    
     render() {
 
         return (
@@ -65,9 +72,20 @@ class Dashboard extends Component {
 
                 <ScrollView>
                     <View style={styles.boxContainer1}>
-                        <Text style={styles.i1}>
-                            Welcome Ayoub !
-                        </Text>
+                        <View style={styles.inlineLogout}>
+                            <Text style={styles.i1}>
+                                Welcome Ayoub ! 
+                                
+                                
+                                
+                            </Text>
+
+                            <Icon style={{ color:'#272343',marginLeft:90,margin:10,justifyContent:'flex-start'}} size={25} name={'logout'} onPress={() => {
+                                this.props.navigation.navigate('LoginScreen', null);
+                            }} />
+
+                            
+                        </View>
                         <Text
                             style={{ color: '#65799B', fontSize: 16, fontFamily: 'Poppings' }}
                         >
@@ -87,21 +105,39 @@ class Dashboard extends Component {
                             <View style={styles.deaths}><Text style={{ color: '#F85050', fontSize: 15, fontFamily: 'Poppings' }}>Deaths</Text><Text style={styles.dataCases}>{this.returnTotalDeaths()}</Text><Image style={{ height: 50 }} source={require('../Icons/Path117.png')} /></View>
                         </View>
                     </View>
-                    <Text style={{ marginTop: 30, fontFamily: 'Poppings', fontSize: 14, color: '#272343' }}>Today's Moroccan statistics</Text>
+                    <Text style={{ marginTop: 30, fontFamily: 'Poppings', fontSize: 14, color: '#272343' }}>Moroccan last recovered cases statistics</Text>
 
                     <View style={styles.boxContainer3}>
-                        <View  style={{backgroundColor:'#272343',width:315,height:220,borderRadius:15,marginLeft:3,marginTop:10}}>
+                        <View  style={{backgroundColor:'#272343',width:315,height:240,borderRadius:15,marginLeft:3,marginTop:10}}>
                     
 
                         <Text  style={{ color:'white',marginLeft:20,borderBottomWidth:1,borderColor:'white',width:270,marginBottom:10,opacity:0.6,paddingBottom:5}}> <Image  source={require('../images/header.png')}  />Morocco</Text>
                         <Text  style={{ color:'white',marginLeft:240,marginTop:-35,marginBottom:10,opacity:0.6,paddingBottom:5}}>Change</Text>
                         
-                        <Chart/>
-                        
+                        <Chart />
+
                         
                         </View>
      
                     </View>
+
+                    
+                    <Text style={{ marginTop: 30, fontFamily: 'Poppings', fontSize: 14, color: '#272343' }}>Moroccan last death cases statistics</Text>
+
+                    <View style={styles.boxContainer3}>
+                        <View style={{ backgroundColor: '#272343', width: 315, height: 240, borderRadius: 15, marginLeft: 3, marginTop: 10 }}>
+
+
+                            <Text style={{ color: 'white', marginLeft: 20, borderBottomWidth: 1, borderColor: 'white', width: 270, marginBottom: 10, opacity: 0.6, paddingBottom: 5 }}> <Image source={require('../images/header.png')} />Morocco</Text>
+                            <Text style={{ color: 'white', marginLeft: 240, marginTop: -35, marginBottom: 10, opacity: 0.6, paddingBottom: 5 }}>Change</Text>
+
+                            <Chart3 />
+
+
+                        </View>
+
+                    </View>
+                    
 
                 </ScrollView>
             </View >
@@ -110,6 +146,16 @@ class Dashboard extends Component {
 }
 
 const styles = StyleSheet.create({
+    inlineLogout:{
+        flexDirection: 'row',
+
+    },
+    i1:{
+        justifyContent: 'flex-start',
+        flex: 1,
+
+    },
+    
     boxContainer3:{
         alignItems:'center'
     },
@@ -187,4 +233,8 @@ const styles = StyleSheet.create({
 
 
 });
+
+
+
+
 export default Dashboard;
