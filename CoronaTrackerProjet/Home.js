@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Component, ScrollView } from 'react-native';
+import { Text, View, Component, ScrollView, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
@@ -8,7 +8,7 @@ import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Dashboard from './components/Dashboard';
 import HomeIcon from './Icons/home.svg'
 import Questionnaire from './components/QuestionnaireDB';
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 function HomeScreen({ navigation }) {
 
     return (
@@ -39,7 +39,19 @@ function MapScreen({ navigation }) {
 
     return (
         <View style={{ flex: 1, }}>
-            <MapView />
+            <MapView style={Styles.map} provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                region={{
+
+                    latitude: 32.323742,
+                    longitude: -9.236578,
+                    latitudeDelta: 0.015,
+                    longitudeDelta: 0.0121,
+                }} >
+                <Marker coordinate={{
+                    latitude: 32.323742,
+                    longitude: -9.236578,
+                }} title="Home" />
+            </MapView>
         </View >
     )
 }
@@ -94,5 +106,18 @@ const tabnav = createMaterialBottomTabNavigator({
     },
 
 }, { initialRouteName: 'HomeScreen', activeColor: '#272343', inactiveColor: 'gray', barStyle: { backgroundColor: 'white' } });
+const Styles = StyleSheet.create({
+    container: {
+        ...StyleSheet.absoluteFillObject,
+        height: 400,
+        width: 400,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
+    map: {
+        flex: 1,
+        ...StyleSheet.absoluteFillObject,
 
+    }
+});
 export default createAppContainer(tabnav);
