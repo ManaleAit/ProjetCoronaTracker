@@ -10,13 +10,75 @@ import {
   TextInput,
   Image,
 } from 'react-native';
+import firebase  from 'firebase';
 import logo from './images/boxCont.png';
 import {TouchableOpacity} from 'react-native';
-
+const firebaseConfig = {
+  apiKey: "AIzaSyDpqE2eCFbKAMqm4Rn9lkQt1ijQhHbGmSM",
+  authDomain: "reactprojet-e7e10.firebaseapp.com",
+  databaseURL: "https://reactprojet-e7e10.firebaseio.com",
+  projectId: "reactprojet-e7e10",
+  storageBucket: "reactprojet-e7e10.appspot.com",
+  messagingSenderId: "555247365105",
+  appId: "1:555247365105:web:c713b2ef4ef6305f5af250",
+  measurementId: "G-4VBMSP3EZX"
+};
+var   person=[];
+var people =
+  {firstname: '',password:''}
 export default function Login({navigation}) {
+
+
   const pressHandler = () => {
     navigation.navigate ('RegisterScreen');
   };
+  const Login=()=>{
+  
+    firebase
+      .database()
+      .ref()
+      .child("person")
+      .once("value", snapshot => {
+        const data = snapshot.val()
+        if (snapshot.val()) {
+          const initperson = [];
+          Object
+            .keys(data)
+            .forEach(per => initperson.push(data[per]));
+         
+            person= initperson
+         
+        }
+      });
+
+    firebase
+      .database()
+      .ref()
+      .child("person")
+      .on("child_added", snapshot => {
+        const data = snapshot.val();
+        if (data) {
+          
+            person: [data.person]
+        
+        }
+      })
+      var count=0;
+      for(var i=0;i<person.length;i++){
+
+         if(person[i].firstname=== people.firstname && person[i].password===people.password){
+
+           count++;
+         }
+      }
+      if(count>0){
+         navigation.navigate ('HomeScreen', { people: people});
+      }
+      else{
+       alert('Check your password !!');
+      }
+   
+  }
   return (
     <View style={styles.containerView}>
 
@@ -42,7 +104,13 @@ export default function Login({navigation}) {
           </Text>
         </View>
         <View style={styles.inputs}>
-          <TextInput placeholder="E-mail" style={styles.inp1} />
+          <TextInput placeholder="Firstname" style={styles.inp1}   name="firstname"  
+          
+          onChangeText={(text) => {
+           
+          people.firstname=text
+              
+          }}/>
           <TextInput
             placeholder="Password"
             secureTextEntry={true}
@@ -51,12 +119,23 @@ export default function Login({navigation}) {
               borderBottomWidth: 1,
               borderBottomColor: '#272343',
             }}
+            name="password"  
+          
+            onChangeText={(text) => {
+           
+            people.password=text
+              
+          }}
           />
         </View>
         <View style={styles.buttons}>
           <TouchableOpacity
             style={styles.SubmitButtonStyle}
             activeOpacity={0.5}
+            onPress={() => {
+               
+              Login();
+            }}
           >
             <Text
               style={{

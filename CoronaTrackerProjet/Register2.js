@@ -13,9 +13,51 @@ import {
 import logo from './images/boxCont.png';
 import {TouchableOpacity} from 'react-native';
 import RegisterHeaderComponent from './components/registerHeaderComponent';
-
+import firebase  from 'firebase';
+const firebaseConfig = {
+  apiKey: "AIzaSyDpqE2eCFbKAMqm4Rn9lkQt1ijQhHbGmSM",
+  authDomain: "reactprojet-e7e10.firebaseapp.com",
+  databaseURL: "https://reactprojet-e7e10.firebaseio.com",
+  projectId: "reactprojet-e7e10",
+  storageBucket: "reactprojet-e7e10.appspot.com",
+  messagingSenderId: "555247365105",
+  appId: "1:555247365105:web:c713b2ef4ef6305f5af250",
+  measurementId: "G-4VBMSP3EZX"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 export default class Register2 extends Component {
+
+
+
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+   
+      people: this.props.navigation.state.params.people,
+      password:'',
+      confirmpassword:''
+    };
+
+    this.addItem = this.addItem.bind(this);
+  }
+
+  addItem () {
+   
+
+    const newPer = firebase.database().ref()
+                          .child("person")
+                          .push();
+    newPer .set({firstname:this.state.people.firstname,lastname:this.state.people.lastname,age:this.state.people.age,adresse:this.state.people.Address,password:this.state.password}, () => this.setState({password:'',confirmpassword:''}))
+
+    this.props.navigation.navigate ('LoginScreen');
+  
+  }
+  
   render () {
+ //   alert(   +'  '+ this.state.people.age)
     return (
       <View style={styles.containerView}>
 
@@ -30,6 +72,11 @@ export default class Register2 extends Component {
                 borderBottomWidth: 1,
                 borderBottomColor: '#272343',
               }}
+              onChangeText={(text) => {
+             
+               this.state.password=text
+                    
+                }}
             />
           </View>
           <View style={styles.inputs}>
@@ -41,10 +88,19 @@ export default class Register2 extends Component {
                 borderBottomWidth: 1,
                 borderBottomColor: '#272343',
               }}
-            />
+              onChangeText={(text) => {
+             
+                this.state.confirmpassword=text
+                     
+                 }}
+              />
             <TouchableOpacity
               style={styles.RegisterButtonStyle}
               activeOpacity={0.5}
+              onPress={() => {
+               
+                this.addItem()
+              }}
             >
               <Text
                 style={{
@@ -77,6 +133,7 @@ export default class Register2 extends Component {
               activeOpacity={0.5}
               onPress={() => {
                 this.props.navigation.navigate ('LoginScreen');
+            
               }}
             >
               <Text
