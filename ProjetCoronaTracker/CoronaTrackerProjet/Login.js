@@ -11,18 +11,18 @@ import {
   Image,
 } from 'react-native';
 import firebase  from 'firebase';
-import logo from './images/boxCont.png';
 import {TouchableOpacity} from 'react-native';
 const firebaseConfig = {
-  apiKey: "AIzaSyDpqE2eCFbKAMqm4Rn9lkQt1ijQhHbGmSM",
-  authDomain: "reactprojet-e7e10.firebaseapp.com",
-  databaseURL: "https://reactprojet-e7e10.firebaseio.com",
-  projectId: "reactprojet-e7e10",
-  storageBucket: "reactprojet-e7e10.appspot.com",
-  messagingSenderId: "555247365105",
-  appId: "1:555247365105:web:c713b2ef4ef6305f5af250",
-  measurementId: "G-4VBMSP3EZX"
+  apiKey: "AIzaSyArE7GAD_j1wapYlggDe2FnhgJhEAunGoQ",
+  authDomain: "prjcorona-8ce7a.firebaseapp.com",
+  databaseURL: "https://prjcorona-8ce7a.firebaseio.com",
+  projectId: "prjcorona-8ce7a",
+  storageBucket: "prjcorona-8ce7a.appspot.com",
+  messagingSenderId: "403228746339",
+  appId: "1:403228746339:web:80fede36cc117b7aaa4e56",
+  measurementId: "G-RBRX88VNT0"
 };
+//firebase.initializeApp(firebaseConfig);
 var   person=[];
 var people =
   {firstname: '',password:''}
@@ -67,16 +67,16 @@ export default function Login({navigation}) {
       for(var i=0;i<person.length;i++){
 
          if(person[i].firstname=== people.firstname && person[i].password===people.password){
-
+          localStorage.setItem('firstname',person[i].firstname);
+          navigation.navigate ('HomeScreen', { people: people});
            count++;
          }
+        }
+      if(count==0){
+        alert('Check your password !!');
       }
-      if(count>0){
-         navigation.navigate ('HomeScreen', { people: people});
-      }
-      else{
-       alert('Check your password !!');
-      }
+ 
+
    
   }
   return (

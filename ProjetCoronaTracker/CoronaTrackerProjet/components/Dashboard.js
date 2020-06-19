@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import 'localstorage-polyfill'
 import {
     SafeAreaView,
     StyleSheet,
@@ -28,6 +28,7 @@ class Dashboard extends Component {
             totalRecovered:null,
             new_daily_cases:null,
             new_daily_deaths:null,
+            firstname:localStorage.getItem('firstname')
         };
     }
     componentDidMount() {
@@ -74,7 +75,7 @@ class Dashboard extends Component {
                     <View style={styles.boxContainer1}>
                         <View style={styles.inlineLogout}>
                             <Text style={styles.i1}>
-                                Welcome Ayoub ! 
+                                Welcome {this.state.firstname}
                                 
                                 
                                 
