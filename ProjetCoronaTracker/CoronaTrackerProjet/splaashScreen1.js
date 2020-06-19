@@ -44,14 +44,14 @@ export default class splaashScreen1 extends Component {
 
 const styles = StyleSheet.create ({
   viewStyle: {
-    backgroundColor:'rgba(156,156,156, 0.9)',
+    backgroundColor:'rgba(215,215,215, 0.9)',
     height:800,
   },
   img:{
-    marginLeft:140,
+    marginLeft:150,
     marginTop:240,
-    width:80,
-    height:80,
+    width:65,
+    height:65,
   },
   text:{
     color:'#272343',

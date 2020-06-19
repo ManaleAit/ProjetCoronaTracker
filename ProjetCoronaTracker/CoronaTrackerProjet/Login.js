@@ -65,7 +65,7 @@ export default function Login({navigation}) {
       })
       var count=0;
       for(var i=0;i<person.length;i++){
-
+        
          if(person[i].firstname=== people.firstname && person[i].password===people.password){
           localStorage.setItem('firstname',person[i].firstname);
           localStorage.setItem('pass',person[i].password);
@@ -73,9 +73,9 @@ export default function Login({navigation}) {
            count++;
          }
         }
-      if(count==0){
+     if(count==0){
         alert('Check your password !!');
-      }
+    }
  
 
    

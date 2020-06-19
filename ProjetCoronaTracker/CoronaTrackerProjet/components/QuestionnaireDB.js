@@ -2,6 +2,19 @@ import React, { Component } from 'react';
 import { View, Text,Image,StyleSheet,CheckBox ,Picker,TextInput,ScrollView} from 'react-native';
 import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import RadioGroup,{Radio} from "react-native-radio-input";
+import 'localstorage-polyfill';
+import firebase  from 'firebase';
+const firebaseConfig = {
+  apiKey: "AIzaSyArE7GAD_j1wapYlggDe2FnhgJhEAunGoQ",
+  authDomain: "prjcorona-8ce7a.firebaseapp.com",
+  databaseURL: "https://prjcorona-8ce7a.firebaseio.com",
+  projectId: "prjcorona-8ce7a",
+  storageBucket: "prjcorona-8ce7a.appspot.com",
+  messagingSenderId: "403228746339",
+  appId: "1:403228746339:web:80fede36cc117b7aaa4e56",
+  measurementId: "G-RBRX88VNT0"
+};
+
 class Questionnaire  extends Component {
 
 
@@ -95,6 +108,9 @@ class Questionnaire  extends Component {
      if(this.state.nbquest>2){
 
         alert('your health is not normal you need to do tests');
+        const Per = firebase.database().ref("/person/"+localStorage.getItem('firstname')+''+localStorage.getItem('pass'))
+                          .update({malade:'true'});
+       
         this.state.q1= '';
         this.state.q2='';
         this.state.q3='';
@@ -113,6 +129,10 @@ class Questionnaire  extends Component {
       
         alert('you dont need the tests' );
         //+ this.state.nbquest+'  '+this.state.q5+'||'+  this.state.q6+'||'+  this.state.q7 +'||'+ this.state.q8 +'||'+ this.state.q9
+        const Per = firebase.database().ref("/person/"+localStorage.getItem('firstname')+''+localStorage.getItem('pass'))
+        .update({malade:'false'});
+
+        
         this.state.q1= '';
         this.state.q2='';
         this.state.q3='';
@@ -226,7 +246,7 @@ class Questionnaire  extends Component {
       <ScrollView>
       <View  style={{ flex: 1, marginTop: 50 }}  >
         <Image  style={styles.img}     source={require('../images/logo.png')} />
-        <Text style={styles.logo} >Corona's Questionnaire</Text>
+        <Text style={styles.logo} >Corona's Questionnaire  {localStorage.getItem('firstname')}</Text>
         <ProgressSteps {...progressStepsStyle}>
           <ProgressStep
             label="step 1"
