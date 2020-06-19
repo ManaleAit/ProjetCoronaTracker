@@ -68,6 +68,7 @@ export default function Login({navigation}) {
 
          if(person[i].firstname=== people.firstname && person[i].password===people.password){
           localStorage.setItem('firstname',person[i].firstname);
+          localStorage.setItem('pass',person[i].password);
           navigation.navigate ('HomeScreen', { people: people});
            count++;
          }

@@ -50,7 +50,7 @@ export default class Register2 extends Component {
     const newPer = firebase.database().ref()
                           .child("person")
                           .push();
-    newPer .set({firstname:this.state.people.firstname,lastname:this.state.people.lastname,age:this.state.people.age,adresse:this.state.people.Address,password:this.state.password}, () => this.setState({password:'',confirmpassword:''}))
+    newPer .set({firstname:this.state.people.firstname,lastname:this.state.people.lastname,age:this.state.people.age,adresse:this.state.people.Address,password:this.state.password,malade:'false'}, () => this.setState({password:'',confirmpassword:''}))
 
     this.props.navigation.navigate ('LoginScreen');
   
