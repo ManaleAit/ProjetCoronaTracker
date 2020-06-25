@@ -15,15 +15,17 @@ import {TouchableOpacity} from 'react-native';
 import RegisterHeaderComponent from './components/registerHeaderComponent';
 import firebase  from 'firebase';
 const firebaseConfig = {
-  apiKey: "AIzaSyArE7GAD_j1wapYlggDe2FnhgJhEAunGoQ",
-  authDomain: "prjcorona-8ce7a.firebaseapp.com",
-  databaseURL: "https://prjcorona-8ce7a.firebaseio.com",
-  projectId: "prjcorona-8ce7a",
-  storageBucket: "prjcorona-8ce7a.appspot.com",
-  messagingSenderId: "403228746339",
-  appId: "1:403228746339:web:80fede36cc117b7aaa4e56",
-  measurementId: "G-RBRX88VNT0"
+  apiKey: "AIzaSyDpqE2eCFbKAMqm4Rn9lkQt1ijQhHbGmSM",
+  authDomain: "reactprojet-e7e10.firebaseapp.com",
+  databaseURL: "https://reactprojet-e7e10.firebaseio.com",
+  projectId: "reactprojet-e7e10",
+  storageBucket: "reactprojet-e7e10.appspot.com",
+  messagingSenderId: "555247365105",
+  appId: "1:555247365105:web:c713b2ef4ef6305f5af250",
+  measurementId: "G-4VBMSP3EZX"
 };
+
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 export default class Register2 extends Component {

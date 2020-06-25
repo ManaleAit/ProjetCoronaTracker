@@ -1,14 +1,32 @@
 import * as React from 'react';
-import { Text, View, Component, ScrollView, StyleSheet } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
+
+import { Text, View, Component, ScrollView, StyleSheet,Dimensions } from 'react-native';
+
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icon2 from 'react-native-vector-icons/MaterialCommunityIcons';
 import Dashboard from './components/Dashboard';
-import HomeIcon from './Icons/home.svg'
+
 import Questionnaire from './components/QuestionnaireDB';
-import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+
+import Maps from './components/Maps';
+
+ state =  {
+
+          focusedLocation: {
+            latitude: 37.7900352,
+            longitude: -122.4013726,
+            latitudeDelta: 0.0122,
+            longitudeDelta:
+              Dimensions.get("window").width /
+              Dimensions.get("window").height *
+              0.0122
+          },
+          locationChosen: false
+}
+
+
 function HomeScreen({ navigation }) {
 
     return (
@@ -37,23 +55,14 @@ function ListScreen({ navigation }) {
 }
 function MapScreen({ navigation }) {
 
-    return (
-        <View style={{ flex: 1, }}>
-            <MapView style={Styles.map} provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-                region={{
+   return (
+           <View style={{ flex: 1, backgroundColor: '#F6F6F6' }}><Maps /></View>
 
-                    latitude: 32.323742,
-                    longitude: -9.236578,
-                    latitudeDelta: 0.015,
-                    longitudeDelta: 0.0121,
-                }} >
-                <Marker coordinate={{
-                    latitude: 32.323742,
-                    longitude: -9.236578,
-                }} title="Home" />
-            </MapView>
-        </View >
+
     )
+
+
+
 }
 const tabnav = createMaterialBottomTabNavigator({
     HomeScreen:

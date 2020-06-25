@@ -83,6 +83,11 @@ target 'CoronaTrackerProjet' do
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
+<<<<<<< HEAD:ProjetCoronaTracker/CoronaTrackerProjet/ios/Podfile
+=======
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+>>>>>>> origin/dev:CoronaTrackerProjet/ios/Podfile
   target 'CoronaTrackerProjetTests' do
     inherit! :complete
     # Pods for testing

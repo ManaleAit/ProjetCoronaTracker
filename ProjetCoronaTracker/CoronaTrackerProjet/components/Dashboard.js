@@ -75,9 +75,9 @@ class Dashboard extends Component {
                     <View style={styles.boxContainer1}>
                         <View style={styles.inlineLogout}>
                             <Text style={styles.i1}>
+
                                 Welcome {this.state.firstname}
-                                
-                                
+                         
                                 
                             </Text>
 
