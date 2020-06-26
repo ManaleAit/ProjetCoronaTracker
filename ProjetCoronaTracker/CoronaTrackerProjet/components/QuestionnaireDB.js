@@ -111,7 +111,16 @@ class Questionnaire  extends Component {
         const Per = firebase.database().ref("/person/"+localStorage.getItem('firstname')+''+localStorage.getItem('pass'))
                           .update({malade:'true'});
        
-        this.state.q1= '';
+     
+     firebase.database().ref("PositionMalades/"+localStorage.getItem('firstname')+''+localStorage.getItem('pass'))
+                          .set({x:localStorage.getItem('x'),y:localStorage.getItem('y')})
+    
+     
+     
+     
+     
+     
+                          this.state.q1= '';
         this.state.q2='';
         this.state.q3='';
         this.state.q4='';

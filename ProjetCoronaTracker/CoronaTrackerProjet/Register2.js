@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,6 +11,7 @@ import {
   TextInput,
   Image,
 } from 'react-native';
+navigator.geolocation = require('@react-native-community/geolocation');
 import logo from './images/boxCont.png';
 import {TouchableOpacity} from 'react-native';
 import RegisterHeaderComponent from './components/registerHeaderComponent';
@@ -37,7 +39,8 @@ export default class Register2 extends Component {
     super(props)
 
     this.state = {
-   
+      latitude: 31.7945,
+      longitude: -7.0849,
       people: this.props.navigation.state.params.people,
       password:'',
       confirmpassword:''
@@ -45,12 +48,28 @@ export default class Register2 extends Component {
 
     this.addItem = this.addItem.bind(this);
   }
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+       (position) => {
+         this.setState({
+           latitude: position.coords.latitude,
+           longitude: position.coords.longitude,
+           error: null,
+         });
+       },
+       (error) => this.setState({ error: error.message }),
+       { enableHighAccuracy: false, timeout: 200000, maximumAge: 1000 },
+     );
+   }
+
 
   addItem () {
-   
+  
+ 
+  
 
     firebase.database().ref("person/"+this.state.people.firstname+''+this.state.password)
-                          .set({firstname:this.state.people.firstname,lastname:this.state.people.lastname,age:this.state.people.age,adresse:this.state.people.Address,password:this.state.password,malade:'false'}, () => this.setState({password:'',confirmpassword:''}))
+                          .set({firstname:this.state.people.firstname,lastname:this.state.people.lastname,age:this.state.people.age,adresse:this.state.people.Address,password:this.state.password,malade:'false',x:this.state.latitude,y:this.state.longitude}, () => this.setState({password:'',confirmpassword:''}))
     
     this.props.navigation.navigate ('LoginScreen');
   
